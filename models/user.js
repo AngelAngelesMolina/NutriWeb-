@@ -77,4 +77,8 @@ module.exports = sequelize.define('users', {
         defaultValue: true,
         allowNull: false,
     },
-})
+}, 
+{
+    timestamps: false
+}
+)

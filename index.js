@@ -19,13 +19,13 @@ const unknownError = require("./middlewares/unknown-error");
 
 // Rutas
 app.use(userRouter);
-app.use(pesoEntriesRouter);
-app.use(especialistaRouter);
-app.use(recetaRouter);
-app.use(authRouter);
+// app.use(pesoEntriesRouter);
+// app.use(especialistaRouter);
+// app.use(recetaRouter);
+// app.use(authRouter);
 
-app.use(validationError);
-app.use(unknownError);
+// app.use(validationError);
+// app.use(unknownError);
 
 app.listen(process.env.SERVER_PORT, function (err) {
 	if (err) console.log(err);

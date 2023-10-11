@@ -10,17 +10,17 @@ const Receta = require('./models/receta');
 exports.initDatabase = async function () {
 
     // Un usuario crea muchas actualizaciones sobre su peso
-    User.hasMany(PesoEntries);
-    PesoEntries.belongsTo(User);
+    // User.hasMany(PesoEntries);
+    // PesoEntries.belongsTo(User);
 
-    User.hasOne(Especialista);
-    Especialista.belongsTo(User);
+    // User.hasOne(Especialista);
+    // Especialista.belongsTo(User);
 
-    Especialista.hasMany(User);
-    User.belongsTo(Especialista);
+    // Especialista.hasMany(User);
+    // User.belongsTo(Especialista);
 
-    User.hasMany(Receta);
-    Receta.belongsTo(User);
+    // User.hasMany(Receta);
+    // Receta.belongsTo(User);
 
     await connect();
     await sync(); // <---Peligrosa

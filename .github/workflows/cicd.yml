@@ -25,4 +25,7 @@ jobs:
         uses: actions/setup-node@v3
         with: #parametros 
           node-version: 18 #Establecer la version de nodejs
-           
+      
+      #Correr los comandos de Node.js para asegurar la integridad del codigo 
+      - run: npm install 
+      
