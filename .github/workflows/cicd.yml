@@ -1,0 +1,28 @@
+name: Continuous Integration - Continous Delivery 
+# Nombre del archivo
+#on: [push] #Cada cuando se hace el proceso, push de cada rama. 
+
+#Con esta configuracion el proceso se ejecuta solo en push a master 
+
+on: 
+  push: 
+    branches:   
+      - master # - -> significa que esto es un array 
+
+#Funciona con jobs 
+
+jobs: 
+  continuos-integration: #lo que se te de la gana para el nombre del job
+    runs-on: ubuntu-latest #levanta contenedor de ubuntu 
+    #Pasos para el proceso 
+    steps: 
+      #GITHUB ACTION MARKETPLACE PARA VER FLOWS QUE SE PUEDEN REUTILIZAR
+      - name: Clonar la última versión del código 
+        uses: actions/checkout@v4 #sacado de la documentacion del action 
+
+
+      - name: Ejecutar las pruebas en un ambiente de nodejs 
+        uses: actions/setup-node@v3
+        with: #parametros 
+          node-version: 18 #Establecer la version de nodejs
+           
