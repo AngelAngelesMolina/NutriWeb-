@@ -12,7 +12,7 @@ exports.createEspecialistaSchema = Joi.object({
     cedulaProfesional: Joi.string().min(12).max(20),
     direccion: Joi.string().min(10).max(200).required(),
     createdAt: Joi.date(),
-    is_active: Joi.boolean().required(),
+    // is_active: Joi.boolean().required(),
 });
 
 exports.loginEspecialistaSchema = Joi.object({

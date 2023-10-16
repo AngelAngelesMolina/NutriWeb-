@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize')
 const { sequelize } = require('./sequelize');
 
-module.exports = sequelize.define('users', {
+module.exports = sequelize.define('especialistas', {
     firstName: {
         type: DataTypes.STRING(50),
         allowNull: false,
@@ -16,7 +16,7 @@ module.exports = sequelize.define('users', {
             len: [2, 50],
         },
     },
-    nickname: {
+    username: {
         type: DataTypes.STRING(50),
         allowNull: false,
         unique: true,

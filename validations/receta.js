@@ -7,6 +7,6 @@ exports.schemaCreaReceta = Joi.object({
   tiempoPreparacion: Joi.number().integer().min(0).max(10000),
 });
 
-exports.paramsSchema = Joi.object({
+exports.schemaRecuperaReceta = Joi.object({
   id: Joi.number().required(),
 });

@@ -24,6 +24,7 @@ app.use(especialistaRouter);
 app.use(recetaRouter);
 app.use(authRouter);
 
+//MANEJO DE ERRORES 
 app.use(validationError);
 app.use(unknownError);
 

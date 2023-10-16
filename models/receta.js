@@ -25,6 +25,4 @@ module.exports = sequelize.define('receta', {
     allowNull: true,
   },
   timestamps: true,
-  //TODO: check it 
-  // timestamps: false,
 });

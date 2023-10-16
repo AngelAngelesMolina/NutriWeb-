@@ -20,7 +20,7 @@ exports.initDatabase = async function () {
     User.belongsTo(Especialista);
 
     User.hasMany(Receta);
-    Receta.belongsTo(User);
+    Receta.hasMany(User);
 
     await connect();
     await sync(); // <---Peligrosa
