@@ -10,7 +10,6 @@ app.use(express.json());
 
 const userRouter = require("./routers/user");
 const pesoEntriesRouter = require("./routers/pesoEntries");
-const especialistaRouter = require("./routers/especialista");
 const recetaRouter = require("./routers/recetas");
 const authRouter = require("./routers/auth")
 
@@ -20,7 +19,6 @@ const unknownError = require("./middlewares/unknown-error");
 // Rutas
 app.use(userRouter);
 app.use(pesoEntriesRouter);
-app.use(especialistaRouter);
 app.use(recetaRouter);
 app.use(authRouter);
 

@@ -8,11 +8,19 @@ exports.createUser = async function (request, response) {
 
 exports.getUsers = async function (request, response) {
 	const usuarios = await findAll();
-	response.status(200).json(usuarios);
+	if(usuarios){
+		response.status(200).json(usuarios);
+	} else{
+		response.status(400).json({msg: "Usuarios no encontrados"});
+	}
 };
 
 exports.getUserbyId = async function (request, response) {
 	const { id } = request.params;
 	const usuario = await findById(id);
-	response.status(200).json(usuario);
+	if(usuario){
+		response.status(200).json(usuario);
+	} else{
+		response.status(400).json({msg: "Usuario no encontrado"});
+	}
 };

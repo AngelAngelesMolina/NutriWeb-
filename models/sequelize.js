@@ -1,9 +1,17 @@
 const { Sequelize } = require('sequelize');
 
-const sequelize = new Sequelize({
-    dialect: 'sqlite',
-    storage: './ProjectDB.db'
-})
+// const sequelize = new Sequelize({
+//     dialect: 'sqlite',
+//     storage: './ProjectDB.db'
+// })
+
+const sequelize =
+	process.env.NODE_ENV === "test"
+		? new Sequelize("sqlite::memory:")
+		: new Sequelize({
+            dialect: 'sqlite',
+            storage: './ProjectDB.db'
+        });
 
 exports.sequelize = sequelize;
 

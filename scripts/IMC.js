@@ -1,6 +1,6 @@
 //CÁLCULO DE MASA CORPORAL (Peso en Kg, Estatura en metros)
 
-const IMC = function (peso, estatura) {
+exports.IMC = function (peso, estatura) {
     let dieta;
     let imc = peso / (estatura * estatura)
 

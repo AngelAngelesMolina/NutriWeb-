@@ -5,15 +5,25 @@ exports.findAll = function () {
 };
 
 exports.findById = function (id) {
-	return pesoEntry.findByPk(id);
+	return pesoEntries.findByPk(id);
 };
 
 exports.insert = function (data) {
-	return pesoEntry.create(data);
+	return pesoEntries.create(data);
 };
 
 exports.update = async function (id, data) {
-	await pesoEntry.update(data, {
+	// try{
+	// 	const updatedEntry = await pesoEntries.update(data, {
+	// 		where: {
+	// 			id,
+	// 		},
+	// 	});
+	// 	console.log(`Filas actualizadas: ${updatedEntry}`);
+	// }catch{
+	// 	console.log(`No actualizadas: ${updatedEntry}`);
+	// }
+	await pesoEntries.update(data, {
 		where: {
 			id,
 		},
@@ -21,6 +31,6 @@ exports.update = async function (id, data) {
 };
 
 exports.deleteById = async function (id) {
-	const entry = await Post.findByPk(id);
+	const entry = await pesoEntries.findByPk(id);
 	await entry.destroy();
 };

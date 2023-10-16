@@ -10,8 +10,10 @@ const {
   schemaCreaReceta,
   schemaRecuperaReceta,
 } = require('../validations/receta');
+const jwtValidator = require('../middlewares/jwt');
 
-router.post('/receta', validator.body(schemaCreaReceta), creaReceta);
+
+router.post('/receta', jwtValidator, validator.body(schemaCreaReceta), creaReceta);
 router.get('/recetas', obtenRecetas);
 router.get(
   '/receta/:id',
