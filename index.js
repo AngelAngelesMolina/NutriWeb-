@@ -18,18 +18,33 @@ const app = express();
 /**
  * Incluye los agentes intermedios.
  */
-//const cors = require("cors");
-const validationError = require("./middlewares/validation-error");
-const unknownError = require("./middlewares/unknown-error");
-
+const cors = require("cors");
 //app.use(cors());
 
-app.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', 'https://melodious-gelato-c9056b.netlify.app'); // Reemplaza con la URL de tu frontend
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  next();
-});
+const validationError = require("./middlewares/validation-error");
+const unknownError = require("./middlewares/unknown-error");
+const dominiosPermitidos = [process.env.FRONTEND_URL];
+
+const corsOptions = {
+    origin: function (origin, callback) {
+        if(dominiosPermitidos.indexOf(origin) !== -1 ){
+            //origin de request permitido
+            callback(null, true); // error, acceso 
+        }else{
+            callback(new Error('No permitido por CORS')); 
+        }
+    }
+}
+
+//indicar ue usamos las opciones de cors 
+app.use(cors(corsOptions));
+
+// app.use(function(req, res, next) {
+//   res.header('Access-Control-Allow-Origin', 'https://melodious-gelato-c9056b.netlify.app'); 
+//   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+//   res.header('Access-Control-Allow-Headers', 'Content-Type');
+//   next();
+// });
 app.use(express.json());
 app.use(validationError);
 app.use(unknownError);
