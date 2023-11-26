@@ -23,18 +23,31 @@ const cors = require("cors");
 
 const validationError = require("./middlewares/validation-error");
 const unknownError = require("./middlewares/unknown-error");
-const dominiosPermitidos = [process.env.FRONTEND_URL];
+// const dominiosPermitidos = [process.env.FRONTEND_URL];
 
+// const corsOptions = {
+//     origin: function (origin, callback) {
+//         if(dominiosPermitidos.indexOf(origin) !== -1 ){
+//             //origin de request permitido
+//             callback(null, true); // error, acceso 
+//         }else{
+//             callback(new Error('No permitido por CORS')); 
+//         }
+//     }
+// }
 const corsOptions = {
-    origin: function (origin, callback) {
-        if(dominiosPermitidos.indexOf(origin) !== -1 ){
-            //origin de request permitido
-            callback(null, true); // error, acceso 
-        }else{
-            callback(new Error('No permitido por CORS')); 
-        }
-    }
-}
+  origin: function (origin, callback) {
+      const dominiosPermitidos = ['https://melodious-gelato-c9056b.netlify.app'];
+
+      if (dominiosPermitidos.indexOf(origin) !== -1) {
+          // Origin de request permitido
+          callback(null, true); // Permitir acceso
+      } else {
+          // Origin de request no permitido
+          callback(new Error('No permitido por CORS'));
+      }
+  }
+};
 
 //indicar ue usamos las opciones de cors 
 app.use(cors(corsOptions));
