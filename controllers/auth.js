@@ -1,31 +1,33 @@
-const { findByUsername } = require('../services/user');
-const jwt = require('jsonwebtoken');
+const { encuentraUsuarioPorCorreo } = require("../services/usuario");
+const jwt = require("jsonwebtoken");
 
 exports.login = async function (request, response) {
-    const { username, password } = request.body;
+  const { correo, clave } = request.body;
 
-    const user = await findByUsername(username);
+  const usuario = await encuentraUsuarioPorCorreo(correo);
 
-    if (!user) {
-        return response.status(400).json({
-            message: 'Usuario o contraseña inválidos',
-            message_dev: 'No se encontró el usuario en la base de datos',
-            code: 'ERR_AUTH',
-        });
-    }
-
-    if (user.password !== password) {
-        return response.status(400).json({
-            message: 'Usuario o contraseña inválidos',
-            message_dev: 'No se encontró el usuario en la base de datos',
-            code: 'ERR_AUTH',
-        });
-    }
-
-    const token = jwt.sign({ id: user.id, username: user.username },
-        process.env.JWT_SECRET);
-
-    response.status(200).json({
-        jwt: token,
+  if (!usuario) {
+    return response.status(401).json({
+      message: "Usuario o contraseña inválidos.",
+      message_dev: "No se encontró el usuario en la base de datos.",
+      code: "ERR_AUTH",
     });
+  }
+
+  if (usuario.clave !== clave) {
+    return response.status(401).json({
+      message: "Usuario o contraseña inválidos.",
+      message_dev: "No se encontró el usuario en la base de datos.",
+      code: "ERR_AUTH",
+    });
+  }
+
+  const token = jwt.sign(
+    { id: usuario.id, correo: usuario.correo },
+    process.env.JWT_SECRET
+  );
+
+  response.status(200).json({
+    jwt: token,
+  });
 };

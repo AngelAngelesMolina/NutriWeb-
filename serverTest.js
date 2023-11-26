@@ -1,11 +1,10 @@
-const express = require('express')
-const app = express()
-const port = 8000
+var http = require('http');
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+http.createServer(function(request, response){
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+    //The following code will print out the incoming request text
+    request.pipe(response);
+
+}).listen(8000, '127.0.0.1');
+
+console.log('Listening on port 8000...');

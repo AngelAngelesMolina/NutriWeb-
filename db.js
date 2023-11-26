@@ -1,20 +1,19 @@
-const { connect, sync } = require('./models/sequelize');
+const { connect, sync } = require("./models/sequelize");
 
-const User = require('./models/user');                   //Usuario
-const PesoEntries = require('./models/pesoEntries');     //Actualizaciones sobre su peso
-const Receta = require('./models/receta');
+/**
+ * Establece el modelado de los datos.
+ */
+const Usuario = require("./models/usuario");
+const Receta = require("./models/receta-favorita");
 
+exports.inicializaLaBaseDeDatos = async function () {
+  /**
+   * Establece las relaciones de las entidades.
+   */
 
+  // Un usuario puede marcar muchas recetas como favoritas.
+  Usuario.hasMany(Receta);
 
-exports.initDatabase = async function () {
-
-    // Un usuario crea muchas actualizaciones sobre su peso
-    User.hasMany(PesoEntries);
-    PesoEntries.belongsTo(User);
-
-    // User.hasMany(Receta);
-    // Receta.hasMany(User);
-
-    await connect();
-    await sync(); // <---Peligrosa
+  await connect();
+  await sync();
 };
